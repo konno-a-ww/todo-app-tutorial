@@ -33,6 +33,7 @@ const addTask = () => {
     // ローカルストレージに保存
     saveTasks();
 };
+
 const renderTasks = () => {
     // 一旦リストを空にする
     taskList.innerHTML = '';
@@ -103,3 +104,15 @@ const loadTasks = () => {
         renderTasks();
     }
 };
+// イベントリスナーを設定
+addButton.addEventListener('click', addTask);
+
+// Enterキーでも追加できるように
+taskInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        addTask();
+    }
+});
+
+// ページ読み込み時にタスクを読み込む
+window.addEventListener('load', loadTasks);
